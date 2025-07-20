@@ -3,11 +3,11 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def home(request):
-    return HttpResponse('Anasayfa')
+def index(request):
+    return render(request, 'pages/index.html')
 
 def contact(request):
-    return HttpResponse('İletişim Sayfası')
+    return render(request, "pages/contact.html")
 
 def about(request):
-    return HttpResponse('Hakkımızda Sayfası')
+    return render(request ,"pages/about.html")

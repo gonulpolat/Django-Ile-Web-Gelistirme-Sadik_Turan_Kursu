@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-# http://127.0.0.1:8000/                                 => Anasayfa
-# http://127.0.0.1:8000/anasayfa                         => Anasayfa
-# http://127.0.0.1:8000/iletisim                         => İletişim Sayfası
-# http://127.0.0.1:8000/hakkimizda                       => Hakkımızda Sayfası
-# http://127.0.0.1:8000/kurs                             => Kurs Listesi
+# http://127.0.0.1:8000/                                 => HTML SAYFASI
+# http://127.0.0.1:8000/anasayfa                         => HTML SAYFASI
+# http://127.0.0.1:8000/index                            => HTML SAYFASI
+# http://127.0.0.1:8000/iletisim                         => HTML SAYFASI
+# http://127.0.0.1:8000/hakkimizda                       => HTML SAYFASI
+# http://127.0.0.1:8000/kurs                             => HTML SAYFASI
 # http://127.0.0.1:8000/kurs/liste                       => Kurs Listesi
 # http://127.0.0.1:8000/kurs/<>                          => <> Detay Sayfası
 # http://127.0.0.1:8000/kurs/kategori/1                  => Programlama Kategorisine Ait Kurslar

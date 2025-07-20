@@ -8,6 +8,9 @@ data = {
     'mobil-uygulama': 'Mobil Uygulama Kategorisine Ait Kurslar',
 }
 
+def index(request):
+    return render(request, 'courses/index.html')
+
 def lists(request):
     category_list = data.keys()
     list_items = ""
