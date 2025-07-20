@@ -23,7 +23,10 @@ from django.urls import include, path
 # http://127.0.0.1:8000/kurs                             => Kurs Listesi
 # http://127.0.0.1:8000/kurs/liste                       => Kurs Listesi
 # http://127.0.0.1:8000/kurs/<>                          => <> Detay Sayfası
-# http://127.0.0.1:8000/kurs/kategori/int:<>             => <>
+# http://127.0.0.1:8000/kurs/kategori/1                  => Programlama Kategorisine Ait Kurslar
+# http://127.0.0.1:8000/kurs/kategori/2                  => Web Geliştirme Kategorisine Ait Kurslar
+# http://127.0.0.1:8000/kurs/kategori/3                  => Mobil Uygulama Kategorisine Ait Kurslar
+# http://127.0.0.1:8000/kurs/kategori/int:<>             => Yanlış Kategori Seçimi
 # http://127.0.0.1:8000/kurs/kategori/programlama        => Programlama Kategorisine Ait Kurslar
 # http://127.0.0.1:8000/kurs/kategori/web-gelistirme     => Web Geliştirme Kategorisine Ait Kurslar
 # http://127.0.0.1:8000/kurs/kategori/mobil-uygulama     => Mobil Uygulama Kategorisine Ait Kurslar
