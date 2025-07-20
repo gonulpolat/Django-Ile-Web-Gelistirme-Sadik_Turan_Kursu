@@ -6,18 +6,20 @@ from django.shortcuts import render
 def lists(request):
     return HttpResponse('Kurs Listesi')
 
-def details(request):
-    return HttpResponse('Kurs Detay Sayfası')
+def details(request, course_name):
+    return HttpResponse(f'{course_name.capitalize()} Detay Sayfası')
 
-def get_courses_by_category(request, category):
+def get_courses_by_category_name(request, category_name):
     text = ""
-    if category == "programlama":
+    if category_name == "programlama":
         text = "Programlama Kategorisine Ait Kurslar"
-    elif category == "web-gelistirme":
+    elif category_name == "web-gelistirme":
         text = "Web Geliştirme Kategorisine Ait Kurslar"
-    elif category == "mobil-uygulama":
+    elif category_name == "mobil-uygulama":
         text = "Mobil Uygulama Kategorisine Ait Kurslar"
     else:
         text = "Yanlış Kategori Seçimi"
-    
     return HttpResponse(text)
+
+def get_courses_by_category_id(request, category_id):
+    return HttpResponse(category_id)

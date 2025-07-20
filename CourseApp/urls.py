@@ -16,17 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-# http://127.0.0.1:8000/                        => Anasayfa
-# http://127.0.0.1:8000/anasayfa                => Anasayfa
-# http://127.0.0.1:8000/iletisim                => İletişim Sayfası
-# http://127.0.0.1:8000/hakkimizda              => Hakkımızda Sayfası
-# http://127.0.0.1:8000/kurs                    => Kurs Listesi
-# http://127.0.0.1:8000/kurs/liste              => Kurs Listesi
-# http://127.0.0.1:8000/kurs/detay              => Kurs Detay Sayfası
-# http://127.0.0.1:8000/kurs/programlama        => "Programlama Kategorisine Ait Kurslar"
-# http://127.0.0.1:8000/kurs/web-gelistirme     => Web Geliştirme Kategorisine Ait Kurslar
-# http://127.0.0.1:8000/kurs/mobil-uygulama     => Mobil Uygulama Kategorisine Ait Kurslar
-# http://127.0.0.1:8000/kurs/...                => Yanlış Kategori Seçimi
+# http://127.0.0.1:8000/                                 => Anasayfa
+# http://127.0.0.1:8000/anasayfa                         => Anasayfa
+# http://127.0.0.1:8000/iletisim                         => İletişim Sayfası
+# http://127.0.0.1:8000/hakkimizda                       => Hakkımızda Sayfası
+# http://127.0.0.1:8000/kurs                             => Kurs Listesi
+# http://127.0.0.1:8000/kurs/liste                       => Kurs Listesi
+# http://127.0.0.1:8000/kurs/<>                          => <> Detay Sayfası
+# http://127.0.0.1:8000/kurs/kategori/int:<>             => <>
+# http://127.0.0.1:8000/kurs/kategori/programlama        => Programlama Kategorisine Ait Kurslar
+# http://127.0.0.1:8000/kurs/kategori/web-gelistirme     => Web Geliştirme Kategorisine Ait Kurslar
+# http://127.0.0.1:8000/kurs/kategori/mobil-uygulama     => Mobil Uygulama Kategorisine Ait Kurslar
+# http://127.0.0.1:8000/kurs/str:<>                      => Yanlış Kategori Seçimi
 
 urlpatterns = [
     path('', include('Pages.urls')),
