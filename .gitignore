@@ -176,3 +176,4 @@ cython_debug/
 
 CourseApp/__pycache__/
 Courses/__pycache__/
+Courses/migrations/__pycache__/
