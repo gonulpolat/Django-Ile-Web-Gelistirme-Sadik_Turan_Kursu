@@ -1,4 +1,5 @@
 Courses/templates/courses/index.html
+Courses/templates/courses/courses.html
 Courses/templates/courses/partials/_categories.html
 Pages/templates/pages/index.html
 Pages/templates/pages/contact.html
