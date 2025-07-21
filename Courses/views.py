@@ -92,14 +92,37 @@ db = {
             'is_active': True
         }
     ],
-    'categories': ['programlama', 'web-gelistirme', 'mobil-uygulama']
+    'categories': [
+        {
+            'id': 1,
+            'name': 'programlama',
+            'slug': 'programlama'
+        },
+        {
+            'id': 2,
+            'name': 'web geliştirme',
+            'slug': 'web-gelistirme'
+        },
+        {
+            'id': 3,
+            'name': 'mobil uygulama',
+            'slug': 'mobil-uygulama'
+        },
+        {
+            'id': 4,
+            'name': 'veri bilimi',
+            'slug': 'veri-bilimi'
+        },
+    ]
 }
 
 def index(request):
-    category_list = data.keys()
+    courses = db['courses']
+    categories = db['categories']
 
     return render(request, 'courses/index.html', {
-        'categories': category_list
+        'categories': categories,
+        'courses': courses
     })
 
 def details(request, course_name):
