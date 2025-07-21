@@ -12,6 +12,12 @@
 {% endblock page_title%} 
 
 {% block content %}
-    <h1>Kurslar Sayfası</h1>
-    <i class="fa-solid fa-mug-saucer fa-2xl"></i>
+    <div class="container mt-3">
+      <div class="row">
+        <!--menu-->
+        {% include "courses/partials/_categories.html" %}
+        <!--content-->
+        <div class="col-9"></div>
+      </div>
+    </div>
 {% endblock content %}
