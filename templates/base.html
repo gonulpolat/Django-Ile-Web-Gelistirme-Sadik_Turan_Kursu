@@ -7,6 +7,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/css/bootstrap.min.css"
     />
+    {% block css_files %}{% endblock css_files %}
     <title>CourseApp | {% block page_title %}{% endblock page_title %}</title>
   </head>
   <body>
@@ -49,5 +50,6 @@
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/js/bootstrap.min.js"></script>
+    {% block js_files %}{% endblock js_files %}
   </body>
 </html>
