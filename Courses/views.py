@@ -17,7 +17,8 @@ db = {
             'imageUrl': "https://assets-btkakademi-gov-tr.akamaized.net/api/gallery/51/0fc4a2ef-e057-476a-9d31-e7e80a5e1245/78_yeni.png?t=1736248421868",
             'slug': 'javascript-kursu',
             'date': date(2020, 7, 21),
-            'is_active': True
+            'isActive': True,
+            'isUpdated': True
         },
         {
             'title': 'Python Kursu',
@@ -25,7 +26,8 @@ db = {
             'imageUrl': "https://assets-btkakademi-gov-tr.akamaized.net/api/gallery/51/0030c18c-355d-4a07-b102-34a280b46565/76_yeni.png?t=1736248421773",
             'slug': 'python-kursu',
             'date': date(2025, 7, 21),
-            'is_active': True
+            'isActive': True,
+            'isUpdated': False
         },
         {
             'title': 'Java Kursu',
@@ -33,7 +35,8 @@ db = {
             'imageUrl': "https://assets-btkakademi-gov-tr.akamaized.net/api/gallery/51/f5538e1e-9431-40b2-94fe-9e208198c013/91_yeni.png?t=1736248427673",
             'slug': 'java-kursu',
             'date': date(2021, 7, 21),
-            'is_active': True
+            'isActive': True,
+            'isUpdated': True
         },
         {
             'title': 'PHP Kursu',
@@ -41,7 +44,8 @@ db = {
             'imageUrl': "https://placehold.co/2190x1440",
             'slug': 'php-kursu',
             'date': date(2023, 1, 10),
-            'is_active': True
+            'isActive': True,
+            'isUpdated': False
         },
         {
             'title': 'Perl Kursu',
@@ -49,7 +53,8 @@ db = {
             'imageUrl': "https://placehold.co/2190x1440",
             'slug': 'perl-kursu',
             'date': date(2024, 12, 12),
-            'is_active': False
+            'isActive': False,
+            'isUpdated': True
         },
         {
             'title': 'ASP.NET Kursu',
@@ -57,7 +62,8 @@ db = {
             'imageUrl': "https://placehold.co/2190x1440",
             'slug': 'aspnet-kursu',
             'date': date(2021, 1, 21),
-            'is_active': True
+            'isActive': False,
+            'isUpdated': True
         },
         {
             'title': 'Django Kursu',
@@ -65,7 +71,8 @@ db = {
             'imageUrl': "https://placehold.co/2190x1440",
             'slug': 'django-kursu',
             'date': date(2025, 2, 2),
-            'is_active': True
+            'isActive': True,
+            'isUpdated': False
         },
         {
             'title': 'Node.js Kursu',
@@ -73,7 +80,8 @@ db = {
             'imageUrl': "https://placehold.co/2190x1440",
             'slug': 'nodejs-kursu',
             'date': date(2023, 5, 18),
-            'is_active': False
+            'isActive': False,
+            'isUpdated': True
         },
         {
             'title': 'Html Kursu',
@@ -81,7 +89,8 @@ db = {
             'imageUrl': "https://assets-btkakademi-gov-tr.akamaized.net/api/gallery/51/6806e4ea-2fb1-42ee-a226-5d83c6d7a9b8/171_yeni.png?t=1736248431781",
             'slug': 'html-kursu',
             'date': date(2020, 7, 21),
-            'is_active': True
+            'isActive': True,
+            'isUpdated': True
         },
         {
             'title': 'Css Kursu',
@@ -89,7 +98,8 @@ db = {
             'imageUrl': "https://assets-btkakademi-gov-tr.akamaized.net/api/gallery/51/0d3f1d7c-5468-4dec-9393-b63a40a070ee/77_yeni.png?t=1736248421861",
             'slug': 'css-kursu',
             'date': date(2025, 3, 4),
-            'is_active': True
+            'isActive': True,
+            'isUpdated': True
         }
     ],
     'categories': [
@@ -117,8 +127,19 @@ db = {
 }
 
 def index(request):
+    """
+        Template'e kursları filtreleyip de gönderebilirsin. (yorum satırlarında olduğu gibi)
+        Direkt gönderip template'de de if ile filtreleyebilirsin (şu an yapılan)
+    """
     courses = db['courses']
     categories = db['categories']
+
+    # courses = []
+    # for course in db['courses']:
+    #     if course['isActive']:
+    #         courses.append(course)
+
+    # courses = [course for course in db['courses'] if course['isActive']]
 
     return render(request, 'courses/index.html', {
         'categories': categories,

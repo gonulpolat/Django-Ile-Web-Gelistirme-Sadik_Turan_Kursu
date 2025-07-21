@@ -18,7 +18,11 @@
           {% include "courses/partials/_categories.html" %}
         </div>
         <div class="col-9">
-          {% include "courses/partials/_course.html" %}
+          {% for course in courses %}
+            {% if course.isActive %}
+              {% include "courses/partials/_course.html" %}
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
