@@ -33,4 +33,15 @@ Terminalden Veri Tabanındaki Kayıtları Filtreleme
 - >>> Course.objects.filter(title__contains="kurs")             => <QuerySet [<Course: JavaScript Kursu>, <Course: Python Kursu>, <Course: Python Kursu>]>
 
 
+Terminalden Veri Tabanındaki Kayıtları Mantıksal Operatörler İle Filtreleme
+
+1) and operatör
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> Course.objects.filter(title__contains='kurs', isActive=1)
+
+2) or operatör
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> >>> Course.objects.filter(Q(title__contains='kurs') | Q(isActive=1))
 
