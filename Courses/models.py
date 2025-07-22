@@ -9,3 +9,7 @@ class Course(models.Model):
     date = models.DateField(null=True, blank=True)
     isActive = models.BooleanField()
     isUpdated = models.BooleanField()
+
+
+    def __str__(self):
+        return f"{self.title}"

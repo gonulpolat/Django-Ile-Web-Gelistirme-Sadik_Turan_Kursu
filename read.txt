@@ -11,3 +11,12 @@ Terminalden Veri Tabanına Kayıt Ekleme
 - python manage.py shell
 - >>> from Courses.models import Course
 - >>> Course.objects.create(title='JavaScript Kursu', description="JavaScript (genellikle JS olarak kısaltılır), HTML ve CSS ile birlikte World Wide Web'in temel teknolojilerinden biri olan programlama dilidir. Web sitelerinin %97'sinden fazlası, web sayfası hareketleri için istemci tarafında JavaScript kullanırlar ve kullanılan kodlar genellikle üçüncü taraf kitaplıkları içerir. Tüm büyük web tarayıcılarında, kaynak kodunu kullanıcıların cihazlarında yürütebilmek için özel bir JavaScript motoru bulunur.", imageUrl="1.jpg", isActive=1, isUpdated=1)
+
+
+Termainalden Veri Tabanındaki Kayıtları Sorgulama
+
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> Course.objects.all()                => <QuerySet [<Course: Course object (1)>, <Course: Course object (2)>, <Course: Course object (3)>]>
+- >>> Course.objects.all()[0].title       => 'JavaScript Kursu'
+- >>> Course.objects.get(pk=1).title      => 'JavaScript Kursu'
