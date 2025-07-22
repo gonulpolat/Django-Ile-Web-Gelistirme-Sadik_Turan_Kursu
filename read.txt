@@ -1,0 +1,13 @@
+Terminalden Veri Tabanına Kayıt Ekleme
+
+1)
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> kurs1 = Course(title='JavaScript Kursu', description="JavaScript (genellikle JS olarak kısaltılır), HTML ve CSS ile birlikte World Wide Web'in temel teknolojilerinden biri olan programlama dilidir. Web sitelerinin %97'sinden fazlası, web sayfası hareketleri için istemci tarafında JavaScript kullanırlar ve kullanılan kodlar genellikle üçüncü taraf kitaplıkları içerir. Tüm büyük web tarayıcılarında, kaynak kodunu kullanıcıların cihazlarında yürütebilmek için özel bir JavaScript motoru bulunur.", imageUrl="1.jpg", isActive=1, isUpdated=1)
+- >>> kurs1.save()
+
+
+2)
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> Course.objects.create(title='JavaScript Kursu', description="JavaScript (genellikle JS olarak kısaltılır), HTML ve CSS ile birlikte World Wide Web'in temel teknolojilerinden biri olan programlama dilidir. Web sitelerinin %97'sinden fazlası, web sayfası hareketleri için istemci tarafında JavaScript kullanırlar ve kullanılan kodlar genellikle üçüncü taraf kitaplıkları içerir. Tüm büyük web tarayıcılarında, kaynak kodunu kullanıcıların cihazlarında yürütebilmek için özel bir JavaScript motoru bulunur.", imageUrl="1.jpg", isActive=1, isUpdated=1)
