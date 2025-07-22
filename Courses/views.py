@@ -2,6 +2,7 @@ from datetime import date
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from .models import Course
 
 data = {
     'programlama': 'Programlama Kategorisine Ait Kurslar',
@@ -127,19 +128,9 @@ db = {
 }
 
 def index(request):
-    """
-        Template'e kursları filtreleyip de gönderebilirsin. (yorum satırlarında olduğu gibi)
-        Direkt gönderip template'de de if ile filtreleyebilirsin (şu an yapılan)
-    """
-    courses = db['courses']
-    categories = db['categories']
-
-    # courses = []
-    # for course in db['courses']:
-    #     if course['isActive']:
-    #         courses.append(course)
-
-    # courses = [course for course in db['courses'] if course['isActive']]
+    courses = Course.objects.all()
+    # courses = Course.objects.filter(isActive=1)     # template üserinde sorgu yazıyorum zaten
+    categories = db['categories']     
 
     return render(request, 'courses/index.html', {
         'categories': categories,
