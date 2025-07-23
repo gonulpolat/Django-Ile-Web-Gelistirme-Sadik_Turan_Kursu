@@ -111,3 +111,39 @@ tersten
 - >>> c1.course_set.all()    -> course modelin adı
 veya (foreign keye related name eklendi, course_set demene gerek yok)
 - >>> c1.kurslar.all()
+
+------------------------------- many to many relations ----------------------------
+
+Terminalden Veri Tabanındaki İlişkilerde Kayıt Ekleme
+
+- python manage.py shell
+- >>> from Courses.models import Category, Course
+- >>> programlama = Category.objects.get(name='programlama')
+- >>> web = Category.objects.get(name='web geliştirme')
+- >>> kurs = Course.objects.get(pk=1)
+- >>> kurs.categories.add(programlama)
+- >>> kurs.categories.add(web)
+tersten
+- >>> programlama.course_set.add(Course.objects.get(pk=2))
+
+
+Terminalden Veri Tabanındaki İlişkilerde Kayıt Silme
+
+- python manage.py shell
+- >>> from Courses.models import Category, Course
+- >>> programlama = Category.objects.get(name='programlama')
+- >>> kurs = Course.objects.get(pk=1)
+- >>> kurs.categories.remove(programlama)         -> kursun categories ile ilişkisinden sadece programlama ile ilişkisini siler
+- >>> kurs.categories.clear()                     -> kursun categories ile olan bütün ilişkilerini siler
+
+
+Terminalden Veri Tabanındaki İlişkilerde Kayıt Sorgulama
+
+- python manage.py shell
+- >>> from Courses.models import Category, Course
+- >>> Course.objects.filter(categories__name="programlama")
+tersten
+- >>> programlama = Category.objects.get(name='programlama')
+- >>> programlama.course_set.all()
+veya
+- >>> programlama.course_set.filter(isActive=1)
