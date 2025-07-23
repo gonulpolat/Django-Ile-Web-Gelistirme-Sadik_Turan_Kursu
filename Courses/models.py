@@ -18,9 +18,7 @@ class Course(models.Model):
     isActive = models.BooleanField()
     isUpdated = models.BooleanField()
     slug = models.SlugField(blank=True, db_index=True, default='', editable=False, null=False, unique=True)
-    # category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)     # Bir kategori silindiğinde onla ilgili alan null değer alır
-    # category = models.ForeignKey(Category, default=1, on_delete=models.SET_DEFAULT)  # Bir kategori silindiğinde onla ilgili alan 1 değerini alır
-    category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE)        # Bir kategori silindiğinde onla ilişikili olan tüm Kurslar da silinir. default parametresi veri tabanında kayıt olduğu için kullanıldı
+    category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE, related_name='kurslar')        # Bir kategori silindiğinde onla ilişikili olan tüm Kurslar da silinir. default parametresi veri tabanında kayıt olduğu için kullanıldı
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
