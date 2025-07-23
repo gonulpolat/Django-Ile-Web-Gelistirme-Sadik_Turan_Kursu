@@ -18,7 +18,7 @@ class Course(models.Model):
     isActive = models.BooleanField()
     isUpdated = models.BooleanField()
     slug = models.SlugField(blank=True, db_index=True, default='', null=False, unique=True)
-    category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE, related_name='kurslar')
+    categories = models.ManyToManyField(Category)
 
     def __str__(self):
         return f"{self.title}"
