@@ -3,6 +3,13 @@ from django.utils.text import slugify
 
 # Create your models here.
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.CharField(max_length=60)
+
+    def __str__(self):
+        return f"{self.name}"
+
 class Course(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(null=True)
@@ -11,27 +18,14 @@ class Course(models.Model):
     isActive = models.BooleanField()
     isUpdated = models.BooleanField()
     slug = models.SlugField(blank=True, db_index=True, default='', editable=False, null=False, unique=True)
-    """
-    blank    -> form ile ilgili
-                True: boş olabilir / False: boş olamaz
-    null     -> veri tabanı ile ilgili
-                True: boş olabilir / False: boş olamaz
-    default  -> veri tabanı ile ilgili
-    editable -> form ile ilgili
-                True: alan görünür ve değer girilebilir / False: form üzerinde görünmüyor
-    """ 
+    # category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)     # Bir kategori silindiğinde onla ilgili alan null değer alır
+    # category = models.ForeignKey(Category, default=1, on_delete=models.SET_DEFAULT)  # Bir kategori silindiğinde onla ilgili alan 1 değerini alır
+    category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE)        # Bir kategori silindiğinde onla ilişikili olan tüm Kurslar da silinir. default parametresi veri tabanında kayıt olduğu için kullanıldı
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(args, kwargs)
 
     def __str__(self):
-        # http://127.0.0.1:8000/admin/Courses/course/    => isimler bu fonksiyondan geliyor
         return f"{self.title}"
-
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-    slug = models.CharField(max_length=60)
-
-    def __str__(self):
-        return f"{self.name}"
+    
