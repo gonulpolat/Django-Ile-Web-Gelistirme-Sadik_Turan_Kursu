@@ -77,3 +77,23 @@ Termainalden Veri Tabanındaki Kayıtları Silme
 - >>> from Courses.models import Course
 - >>> kurs1 = Course.objects.get(pk=1)
 - >>> kurs1.delete()
+
+------------------------------- 1 to many relations ----------------------------
+
+Terminalden Veri Tabanındaki İlişkilerde Kayıt Ekleme
+
+- python manage.py shell
+- >>> from Courses.models import Category, Course
+- >>> c1 = Category.objects.get(pk=1)
+- >>> kurs = Course(title='angular dersleri', imageUrl='1.jpeg', isActive=1, isUpdated=1, category=c1)
+- >>> kurs.save()
+
+
+Terminalden Veri Tabanındaki İlişkilerde Kayıt Güncelleme
+
+- python manage.py shell
+- >>> from Courses.models import Category, Course
+- >>> k2 = Course.objects.get(pk=2)
+- >>> c2 = Category.objects.get(pk=2)
+- >>> k2.category = c2
+- >>> k2.save()
