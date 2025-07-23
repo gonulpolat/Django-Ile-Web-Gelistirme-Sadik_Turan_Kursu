@@ -15,7 +15,8 @@ def index(request):
 
     return render(request, 'courses/index.html', {
         'categories': categories,
-        'courses': courses
+        'courses': courses,
+        'all_courses': courses,
     })
 
 def details(request, slug):
@@ -26,22 +27,15 @@ def details(request, slug):
     }
     return render(request, 'courses/details.html', context)
 
-def get_courses_by_category_name(request, category_name):
-    try: 
-        category_text = data[category_name]
-        return render(request, 'courses/courses.html', {
-            'category': category_name,
-            'category_text': category_text,
-        })
-    except:
-        return HttpResponseNotFound('<h1>Yanlış Kategori Seçimi</h1>')
+def get_courses_by_category(request, slug):
+    courses = Course.objects.filter(category__slug=slug, isActive=True)
+    all_courses = Course.objects.all()
+    categories = Category.objects.all()
 
-def get_courses_by_category_id(request, category_id):
-    category_key_list = list(data.keys())
-    if category_id > len(category_key_list):
-        return HttpResponseNotFound('<h1>Yanlış Kategori Seçimi</h1>')
-    category_name = category_key_list[category_id - 1]
+    return render(request, 'courses/index.html', {
+        'categories': categories,
+        'courses': courses,
+        'selected_category': slug,
+        'all_courses': all_courses,
+    })
 
-    redirect_url = reverse('courses_by_category_name', args=[category_name])
-
-    return redirect(redirect_url)

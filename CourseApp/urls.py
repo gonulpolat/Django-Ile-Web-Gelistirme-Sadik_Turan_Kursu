@@ -16,23 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-# http://127.0.0.1:8000/                                 => HTML SAYFASI
-# http://127.0.0.1:8000/anasayfa                         => HTML SAYFASI
-# http://127.0.0.1:8000/index                            => HTML SAYFASI
-# http://127.0.0.1:8000/iletisim                         => HTML SAYFASI
-# http://127.0.0.1:8000/hakkimizda                       => HTML SAYFASI
-# http://127.0.0.1:8000/kurs                             => HTML SAYFASI
-# http://127.0.0.1:8000/kurs/liste                       => Kurs Listesi
-# http://127.0.0.1:8000/kurs/<>                          => <> Detay Sayfası
-# http://127.0.0.1:8000/kurs/kategori/1                  => Programlama Kategorisine Ait Kurslar
-# http://127.0.0.1:8000/kurs/kategori/2                  => Web Geliştirme Kategorisine Ait Kurslar
-# http://127.0.0.1:8000/kurs/kategori/3                  => Mobil Uygulama Kategorisine Ait Kurslar
-# http://127.0.0.1:8000/kurs/kategori/int:<>             => Yanlış Kategori Seçimi
-# http://127.0.0.1:8000/kurs/kategori/programlama        => Programlama Kategorisine Ait Kurslar
-# http://127.0.0.1:8000/kurs/kategori/web-gelistirme     => Web Geliştirme Kategorisine Ait Kurslar
-# http://127.0.0.1:8000/kurs/kategori/mobil-uygulama     => Mobil Uygulama Kategorisine Ait Kurslar
-# http://127.0.0.1:8000/kurs/str:<>                      => Yanlış Kategori Seçimi
-
 urlpatterns = [
     path('', include('Pages.urls')),
     path('kurs/', include('Courses.urls')),
