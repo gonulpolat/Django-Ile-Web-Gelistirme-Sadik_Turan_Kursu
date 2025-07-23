@@ -45,3 +45,35 @@ Terminalden Veri Tabanındaki Kayıtları Mantıksal Operatörler İle Filtrelem
 - >>> from Courses.models import Course
 - >>> >>> Course.objects.filter(Q(title__contains='kurs') | Q(isActive=1))
 
+
+Terminalden Sonradan Eklenen Slug Alanını Doldurma
+
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> Course.objects.get(pk=1).save()
+- >>> ..
+
+
+Termainalden Veri Tabanındaki Kayıtları Güncelleme (Tek Kayıt)
+
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> kurs1 = Course.objects.get(pk=1)
+- >>> kurs1.title = "Javascript Kursu"
+- >>> kurs1.save()
+
+
+Termainalden Veri Tabanındaki Kayıtları Güncelleme  (Birden Fazla Kayıt)
+
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> kurslar = Course.objects.filter(isActive=0)
+- >>> kurslar.update(isActive=1)
+
+
+Termainalden Veri Tabanındaki Kayıtları Silme
+
+- python manage.py shell
+- >>> from Courses.models import Course
+- >>> kurs1 = Course.objects.get(pk=1)
+- >>> kurs1.delete()
