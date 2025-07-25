@@ -27,6 +27,9 @@ def search(request):
         'courses': courses,
     })
 
+def create_course(request):
+    return render(request, "courses/create-course.html")
+
 
 def details(request, slug):
     course = get_object_or_404(Course, slug=slug)
