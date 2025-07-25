@@ -28,6 +28,31 @@ def search(request):
     })
 
 def create_course(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        imageUrl = request.POST['imageUrl']
+        date = request.POST['date']
+        slug = request.POST['slug']
+        isActive = request.POST.get('isActive', False)
+        isHome = request.POST.get('isHome', False)
+        isUpdated = request.POST.get('isUpdated', False)
+
+        if isActive == 'on':
+            isActive = True
+
+        if isHome == 'on':
+            isHome = True
+
+        if isUpdated == 'on':
+            isUpdated = True
+        
+        course = Course(title=title, description=description, imageUrl=imageUrl, date=date, slug=slug, isActive=isActive, isHome=isHome, isUpdated=isUpdated)
+
+        course.save()
+
+        return redirect('/kurs')
+        
     return render(request, "courses/create-course.html")
 
 
