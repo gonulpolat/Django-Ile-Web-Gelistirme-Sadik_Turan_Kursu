@@ -5,5 +5,4 @@ class CourseCreateForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     imageUrl = forms.CharField()
     date = forms.DateField()
-    slug = forms.CharField()
-    
+    slug = forms.SlugField()
