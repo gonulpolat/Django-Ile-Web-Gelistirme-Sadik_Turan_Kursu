@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
-from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
+
+from Courses.forms import CourseCreateForm
 from .models import Category, Course
 
 def index(request):
@@ -28,50 +29,12 @@ def search(request):
     })
 
 def create_course(request):
-    if request.method == 'POST':
-        title = request.POST['title']
-        description = request.POST['description']
-        imageUrl = request.POST['imageUrl']
-        date = request.POST['date']
-        slug = request.POST['slug']
-        isActive = request.POST.get('isActive', False)
-        isHome = request.POST.get('isHome', False)
-        isUpdated = request.POST.get('isUpdated', False)
+    
+    form = CourseCreateForm()
 
-        if isActive == 'on':
-            isActive = True
-
-        if isHome == 'on':
-            isHome = True
-
-        if isUpdated == 'on':
-            isUpdated = True
-
-
-        error = False
-        msg = ''
-        if title == '':
-            error = True
-            msg += "Title alanı zorunludur."
-
-        
-        if not error and len(title) < 3:
-            error = True
-            msg += "Title alanı için en az 3 karakter girilmeli."
-
-        if error:
-            return render(request, "courses/create-course.html", {
-                'error': True,
-                'msg': msg
-            })
-        
-        course = Course(title=title, description=description, imageUrl=imageUrl, date=date, slug=slug, isActive=isActive, isHome=isHome, isUpdated=isUpdated)
-
-        course.save()
-
-        return redirect('/kurs')
-        
-    return render(request, "courses/create-course.html")
+    return render(request, "courses/create-course.html", {
+        'form': form
+    })
 
 
 def details(request, slug):

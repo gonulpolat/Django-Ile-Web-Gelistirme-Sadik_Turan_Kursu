@@ -25,38 +25,8 @@
 
             <form action="{% url 'create_course' %}" method="POST">
                 {% csrf_token %}
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" name="title" id="" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea name="description" id="" class="form-control"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="imageUrl" class="form-label">İmage URL</label>
-                    <input type="text" name="imageUrl" id="" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="date" class="form-label">Date</label>
-                    <input type="date" name="date" id="" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="slug" class="form-label">Slug</label>
-                    <input type="text" name="slug" id="" class="form-control">
-                </div>
-                <div class="form-check mb-3">
-                    <input type="checkbox" name="isActive" id="" class="form-check-input">
-                    <label for="isActive" class="form-check-label">isActive</label>
-                </div>
-                <div class="form-check mb-3">
-                    <input type="checkbox" name="isHome" id="" class="form-check-input">
-                    <label for="isHome" class="form-check-label">isHome</label>
-                </div>
-                <div class="form-check mb-3">
-                    <input type="checkbox" name="isUpdated" id="" class="form-check-input">
-                    <label for="isUpdated" class="form-check-label">isUpdated</label>
-                </div>
+                
+                {{ form.as_p }}
 
                 <button type="submit" class="btn btn-primary">Kaydet</button>
             </form>
