@@ -46,6 +46,24 @@ def create_course(request):
 
         if isUpdated == 'on':
             isUpdated = True
+
+
+        error = False
+        msg = ''
+        if title == '':
+            error = True
+            msg += "Title alanı zorunludur."
+
+        
+        if not error and len(title) < 3:
+            error = True
+            msg += "Title alanı için en az 3 karakter girilmeli."
+
+        if error:
+            return render(request, "courses/create-course.html", {
+                'error': True,
+                'msg': msg
+            })
         
         course = Course(title=title, description=description, imageUrl=imageUrl, date=date, slug=slug, isActive=isActive, isHome=isHome, isUpdated=isUpdated)
 
