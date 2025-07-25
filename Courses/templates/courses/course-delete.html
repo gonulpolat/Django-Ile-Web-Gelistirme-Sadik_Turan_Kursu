@@ -1,0 +1,38 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block css_files %}
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static "courses/css/style.css" %}">
+{% endblock css_files %}
+
+{% block page_title %} 
+    Kursu Sil
+{% endblock page_title%} 
+
+{% block content %}
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-12">
+            <p>
+                <strong>{{course.title}}</strong> isimli kursu silmek istiyor musunuz?
+            </p>
+
+            <form action="{% url "course_delete" course.id %}" method="POST">
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-danger">Evet</button>
+                <a href="{% url "course_list" %}" class="btn btn-primary">Hayır</a>
+            </form>
+
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+
+{% block js_files %}
+    <script src="{% static "courses/js/script.js" %}"></script>
+{% endblock js_files %}

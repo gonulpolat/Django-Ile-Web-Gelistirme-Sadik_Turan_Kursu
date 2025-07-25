@@ -42,8 +42,9 @@
                                 {% if course.isUpdated %}
                                     <a href="" class="btn btn-secondary btn-sm">Güncellendi</a> 
                                 {% else %}
-                                    <a href="{% url 'course_edit' course.id %}" class="btn btn-primary btn-sm" style="width:92px;">Güncelle</a> 
+                                    <a href="{% url 'course_edit' course.id %}" class="btn btn-primary btn-sm">Güncelle</a> 
                                 {% endif %}
+                                <a href="{% url 'course_delete' course.id %}" class="btn btn-danger btn-sm">Sil</a> 
                             </td>
                         </tr>
                     {% endfor %}

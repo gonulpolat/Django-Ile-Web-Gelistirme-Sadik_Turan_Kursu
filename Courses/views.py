@@ -28,7 +28,7 @@ def search(request):
         'courses': courses,
     })
 
-def create_course(request):
+def course_create(request):
     if request.method == 'POST':
         form = CourseCreateForm(request.POST)
         
@@ -40,7 +40,7 @@ def create_course(request):
     else:
         form = CourseCreateForm()
 
-    return render(request, "courses/create-course.html", {
+    return render(request, "courses/course-create.html", {
         'form': form
     })
 
@@ -64,6 +64,19 @@ def course_edit(request, id):
 
     return render(request, "courses/course-edit.html", {
         'form': form,
+    })
+
+
+def course_delete(request, id):
+    course = get_object_or_404(Course, pk=id)
+
+    if request.method == 'POST':
+        # Course.objects.get(pk=id).delete()    # kursu yukarda alıyorsun zaten, bir daha almaya gerek yok
+        course.delete()
+        return redirect("course_list")
+
+    return render(request, "courses/course-delete.html", {
+        'course': course,
     })
 
 
