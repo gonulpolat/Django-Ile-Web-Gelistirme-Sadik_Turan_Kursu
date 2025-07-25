@@ -25,7 +25,7 @@
           {% endif %}
 
           {% for course in courses %}
-            {% if course.isActive %}
+            {% if course.isActive and course.isHome%}
               {% include "courses/partials/_course.html" %}
             {% endif %}
           {% endfor %}

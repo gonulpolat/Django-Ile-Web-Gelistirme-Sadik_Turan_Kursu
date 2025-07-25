@@ -4,11 +4,11 @@ from .models import Category, Course
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'isActive', 'isUpdated', 'category_list')    
+    list_display = ('title', 'slug', 'isActive', 'isHome', 'isUpdated', 'category_list')    
     list_display_links = ('title', 'slug')                      
     prepopulated_fields = {'slug': ('title',),}
-    list_filter = ('isActive', 'isUpdated')
-    list_editable = ('isActive',)                                
+    list_filter = ('isActive', 'isUpdated', 'isHome')
+    list_editable = ('isActive', 'isHome')                                
     search_fields = ('title', 'description')
 
     def category_list(self, obj):
