@@ -43,8 +43,9 @@ def create_course(request):
             course.save()
 
             return redirect("/kurs")
-
-    form = CourseCreateForm()
+        
+    else:
+        form = CourseCreateForm()
 
     return render(request, "courses/create-course.html", {
         'form': form

@@ -23,7 +23,7 @@
                 </div>
             {% endif %}
 
-            <form action="{% url 'create_course' %}" method="POST">
+            <form action="{% url 'create_course' %}" method="POST" novalidate>  <!--Tarayıcı üzerinde hâlâ required attribute'ü var ancak tarayıcı göz ardı eder-->
                 {% csrf_token %}
                 
                 {{ form.as_p }}
