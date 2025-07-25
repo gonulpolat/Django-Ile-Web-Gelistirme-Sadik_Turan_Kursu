@@ -23,10 +23,33 @@
                 </div>
             {% endif %}
 
-            <form action="{% url 'create_course' %}" method="POST" novalidate>  <!--Tarayıcı üzerinde hâlâ required attribute'ü var ancak tarayıcı göz ardı eder-->
+            <form action="{% url 'create_course' %}" method="POST" novalidate>
                 {% csrf_token %}
-                
-                {{ form.as_p }}
+
+                <div class="mb-3">
+                    <label for="{{form.title.id_for_label}}" class="form-label">Title</label>
+                    {{ form.title }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{form.description.id_for_label}}" class="form-label">Description</label>
+                    {{ form.description }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{form.imageUrl.id_for_label}}" class="form-label">Image URL</label>
+                    {{ form.imageUrl }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{form.date.id_for_label}}" class="form-label">Date</label>
+                    {{ form.date }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{form.slug.id_for_label}}" class="form-label">Slug</label>
+                    {{ form.slug }}
+                </div>
 
                 <button type="submit" class="btn btn-primary">Kaydet</button>
             </form>
