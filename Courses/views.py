@@ -80,6 +80,19 @@ def course_delete(request, id):
     })
 
 
+def upload(request):
+
+    if request.method == 'POST':
+        uploaded_image = request.FILES['image']
+        print(uploaded_image)                    # Dosya adı
+        print(uploaded_image.name)               # Dosya adı
+        print(uploaded_image.size)               # Dosya boyutu
+        print(uploaded_image.content_type)       # Dosya türü
+        return render(request, "courses/success.html")
+    
+    return render(request, "courses/upload.html")
+
+
 def details(request, slug):
     course = get_object_or_404(Course, slug=slug)
 

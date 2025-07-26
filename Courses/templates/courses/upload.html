@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block css_files %}
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static "courses/css/style.css" %}">
+{% endblock css_files %}
+
+{% block page_title %} 
+    Upload Image
+{% endblock page_title%} 
+
+{% block content %}
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-12">
+            <form action="{% url "upload_image" %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <input type="file" name="image" class="form-control" id="uploadImage">
+                    <button class="btn btn-outline-secondary" type="submit" id="">Yükle</button>
+                </div>
+
+            </form>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+
+{% block js_files %}
+    <script src="{% static "courses/js/script.js" %}"></script>
+{% endblock js_files %}
