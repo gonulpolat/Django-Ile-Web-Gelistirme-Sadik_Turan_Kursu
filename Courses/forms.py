@@ -57,3 +57,7 @@ class CourseEditForm(forms.ModelForm):
                 'required': 'Lütfen bir açıklama giriniz.',
             },
         }
+
+    
+class UploadForm(forms.Form):
+    image = forms.ImageField()

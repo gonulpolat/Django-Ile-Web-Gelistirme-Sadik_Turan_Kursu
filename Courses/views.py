@@ -3,7 +3,7 @@ from random import randint
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
-from Courses.forms import CourseCreateForm, CourseEditForm
+from Courses.forms import CourseCreateForm, CourseEditForm, UploadForm
 from .models import Category, Course
 
 def index(request):
@@ -85,12 +85,19 @@ def course_delete(request, id):
 def upload(request):
 
     if request.method == 'POST':
-        uploaded_images = request.FILES.getlist('images')
-        for file in uploaded_images:
-            handle_uploaded_files(file)
-        return render(request, "courses/success.html")
+        form = UploadForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            uploaded_image = request.FILES['image']
+            handle_uploaded_files(uploaded_image)
+            return render(request, "courses/success.html")
     
-    return render(request, "courses/upload.html")
+    else:
+        form = UploadForm()
+    return render(request, "courses/upload.html", {
+        'form': form
+    })
+
 
 def handle_uploaded_files(file):
     number = randint(1, 99999)
