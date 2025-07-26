@@ -13,7 +13,7 @@ class Category(models.Model):
 class Course(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(null=True)
-    imageUrl = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(upload_to='images', default='')
     date = models.DateField(auto_now=True, null=True, blank=True)
     isActive = models.BooleanField(default=False)
     isHome = models.BooleanField(default=False)
