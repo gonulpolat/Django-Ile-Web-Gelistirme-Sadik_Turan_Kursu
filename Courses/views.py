@@ -1,3 +1,5 @@
+from os import path
+from random import randint
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -84,13 +86,18 @@ def upload(request):
 
     if request.method == 'POST':
         uploaded_image = request.FILES['image']
-        print(uploaded_image)                    # Dosya adı
-        print(uploaded_image.name)               # Dosya adı
-        print(uploaded_image.size)               # Dosya boyutu
-        print(uploaded_image.content_type)       # Dosya türü
+        handle_uploaded_files(uploaded_image)
         return render(request, "courses/success.html")
     
     return render(request, "courses/upload.html")
+
+def handle_uploaded_files(file):
+    number = randint(1, 99999)
+    file_name, file_extension = path.splitext(file.name)
+    name = file_name + '_' + str(number) + file_extension 
+    with open('temp/' + name, 'wb+') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
 
 
 def details(request, slug):
