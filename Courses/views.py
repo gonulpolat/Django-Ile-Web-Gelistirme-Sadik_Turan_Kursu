@@ -59,8 +59,10 @@ def course_edit(request, id):
 
     if request.method == 'POST':
         form = CourseEditForm(request.POST, request.FILES, instance=course)
-        form.save()
-        return redirect("course_list")
+        
+        if form.is_valid():
+            form.save()
+            return redirect("course_list")
     else:
         form = CourseEditForm(instance=course)
 
