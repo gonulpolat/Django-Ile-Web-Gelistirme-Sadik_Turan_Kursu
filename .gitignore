@@ -178,3 +178,4 @@ CourseApp/__pycache__/
 Courses/__pycache__/
 Courses/migrations/__pycache__/
 db.sqlite3
+temp/
