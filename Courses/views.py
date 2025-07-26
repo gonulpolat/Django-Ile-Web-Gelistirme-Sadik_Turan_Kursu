@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
 from Courses.forms import CourseCreateForm, CourseEditForm, UploadForm
-from .models import Category, Course
+from .models import Category, Course, UploadModel
 
 def index(request):
     courses = Course.objects.all().order_by('date')
@@ -88,8 +88,8 @@ def upload(request):
         form = UploadForm(request.POST, request.FILES)
 
         if form.is_valid():
-            uploaded_image = request.FILES['image']
-            handle_uploaded_files(uploaded_image)
+            model = UploadModel(image=request.FILES['image'])
+            model.save()
             return render(request, "courses/success.html")
     
     else:
@@ -97,15 +97,6 @@ def upload(request):
     return render(request, "courses/upload.html", {
         'form': form
     })
-
-
-def handle_uploaded_files(file):
-    number = randint(1, 99999)
-    file_name, file_extension = path.splitext(file.name)
-    name = file_name + '_' + str(number) + file_extension 
-    with open('temp/' + name, 'wb+') as destination:
-        for chunk in file.chunks():
-            destination.write(chunk)
 
 
 def details(request, slug):
