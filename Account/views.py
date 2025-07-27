@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 
@@ -13,25 +14,39 @@ def user_login(request):
         })
 
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            messages.add_message(request, messages.SUCCESS, 'Giriş başarılı.')
-            nextUrl = request.GET.get('next', None)
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
 
-            if nextUrl is None:
-                return redirect('index')
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                messages.add_message(request, messages.SUCCESS, 'Giriş başarılı.')
+                nextUrl = request.GET.get('next', None)
+
+                if nextUrl is None:
+                    return redirect('index')
+                else:
+                    return redirect(nextUrl)
+
             else:
-                return redirect(nextUrl)
-
+                return render(request, 'account/login.html', {
+                    'form': form,
+                })
+            
         else:
-            messages.add_message(request, messages.ERROR, 'Username ya da parola yanlış.')
-            return render(request, 'account/login.html')
+                return render(request, 'account/login.html', {
+                    'form': form,
+                })
+        
     else:
-        return render(request, 'account/login.html')
+        form = AuthenticationForm()
+        return render(request, 'account/login.html', {
+            'form': form
+        })
 
 
 def user_register(request):
