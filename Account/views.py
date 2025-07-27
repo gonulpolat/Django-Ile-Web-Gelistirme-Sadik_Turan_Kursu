@@ -1,9 +1,13 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 
 # Create your views here.
 
 def user_login(request):
+
+    if request.user.is_authenticated:
+        return redirect('index')
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -25,5 +29,6 @@ def user_register(request):
 
 
 def user_logout(request):
+    logout(request)
     return redirect('index')
 
