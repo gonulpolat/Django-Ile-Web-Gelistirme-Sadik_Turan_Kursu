@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 
 from Account.forms import LoginUserForm
@@ -53,40 +53,28 @@ def user_login(request):
 def user_register(request):
 
     if request.method == 'POST':
-        username = request.POST['username'].strip()
-        email = request.POST['email']
-        password = request.POST['password']
-        repassword = request.POST['repassword']
+        form = UserCreationForm(request.POST)
 
-        if password != repassword:
-            return render(request, 'account/register.html', {
-                'error': 'Parola eşleşmiyor.',
-                'username': username,
-                'email': email,
-            })
-        
-        if User.objects.filter(username = username).exists():
-            return render(request, 'account/register.html', {
-                'error': 'Username kullanılıyor.',
-                'email': email,
-                'password': password,
-                'repassword': repassword,
-            })
-        
-        if User.objects.filter(email = email).exists():
-            return render(request, 'account/register.html', {
-                'error': 'Email kullanılıyor.',
-                'username': username,
-                'password': password,
-                'repassword': repassword,
-            })
-        
-        user = User.objects.create_user(username=username, email=email, password=password)
-        user.save()
-        return redirect('user_login')
+        if form.is_valid():
+            form.save()
+            
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
 
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+            return redirect('index')
+        
+        else:
+            return render(request, 'account/register.html', {
+                'form': form,
+            })
+    
     else:
-        return render(request, 'account/register.html')
+        form = UserCreationForm()
+        return render(request, 'account/register.html', {
+            'form': form
+        })
 
 
 def user_logout(request):
