@@ -17,12 +17,16 @@
                 <li class="nav-item">
                     <a href="{% url "about" %}" class="nav-link">Hakkımızda</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url "course_create" %}" class="nav-link">Kurs Ekle</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url "course_list" %}" class="nav-link">Kursları Listele</a>
-                </li>
+
+                {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a href="{% url "course_create" %}" class="nav-link">Kurs Ekle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url "course_list" %}" class="nav-link">Kursları Listele</a>
+                    </li>
+                {% endif %} 
+                
             </ul>
 
             <ul class="navbar-nav me-1">

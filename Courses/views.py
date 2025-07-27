@@ -1,7 +1,6 @@
-from os import path
-from random import randint
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from Courses.forms import CourseCreateForm, CourseEditForm, UploadForm
 from .models import Category, Course, UploadModel
@@ -30,7 +29,18 @@ def search(request):
         'courses': courses,
     })
 
+"""
+    Gelen URL: http://127.0.0.1:8000/accounts/login/?next=/kurs/course-create
+    Fakat bu uygulamada account kullanıyoruz. settings içinden değiş.
+"""
+
+def isAdmin(user):
+    return user.is_superuser
+
+@user_passes_test(isAdmin)
 def course_create(request):
+    # if not request.user.is_superuser:
+    #     return redirect('index')
     if request.method == 'POST':
         form = CourseCreateForm(request.POST, request.FILES)
         
@@ -46,14 +56,14 @@ def course_create(request):
         'form': form
     })
 
-
+@login_required()
 def course_list(request):
     courses = Course.objects.all()
     return render(request, 'courses/course-list.html', {
         'courses': courses
     })
 
-
+@user_passes_test(isAdmin)
 def course_edit(request, id):
     course = get_object_or_404(Course, pk=id)
 
@@ -70,7 +80,7 @@ def course_edit(request, id):
         'form': form,
     })
 
-
+@user_passes_test(isAdmin)
 def course_delete(request, id):
     course = get_object_or_404(Course, pk=id)
 
