@@ -3,16 +3,18 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from Courses.forms import CourseCreateForm, CourseEditForm, UploadForm
-from .models import Category, Course, UploadModel
+from .models import Category, Course, UploadModel, Slider
 
 def index(request):
     courses = Course.objects.all().order_by('date')
-    categories = Category.objects.all()   
+    categories = Category.objects.all() 
+    sliders = Slider.objects.filter(is_active = True)  
 
     return render(request, 'courses/index.html', {
         'categories': categories,
         'courses': courses,
         'all_courses': courses,
+        'sliders': sliders,
     })
 
 

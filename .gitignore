@@ -181,4 +181,6 @@ db.sqlite3
 temp/
 uploads/*
 !uploads/images/
+!uploads/sliders/
 uploads/images/*
+uploads/sliders/*
