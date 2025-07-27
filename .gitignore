@@ -184,3 +184,5 @@ uploads/*
 !uploads/sliders/
 uploads/images/*
 uploads/sliders/*
+!staticfiles/
+staticfiles/*
